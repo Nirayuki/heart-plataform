@@ -1,0 +1,121 @@
+[gd_scene load_steps=2 format=3 uid="uid://bysfkwus3pnma"]
+
+[ext_resource type="Script" path="res://Scripts/PauseGame.gd" id="1_kv5au"]
+
+[node name="PauseGame" type="ColorRect"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1120.0
+offset_top = -961.0
+offset_right = 1257.0
+offset_bottom = 588.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.694118)
+script = ExtResource("1_kv5au")
+
+[node name="PauseMenu" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1120.0
+offset_top = 961.0
+offset_right = -1257.0
+offset_bottom = -588.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Game Pausado"
+horizontal_alignment = 1
+
+[node name="returnGame" type="Button" parent="PauseMenu/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Retornar ao jogo"
+
+[node name="go_to_control_menu" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Controles"
+
+[node name="returnMenu" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Voltar para o menu"
+
+[node name="ControlMenu" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1120.0
+offset_top = 962.0
+offset_right = -1258.0
+offset_bottom = -589.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ControlMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ControlMenu/VBoxContainer"]
+layout_mode = 2
+text = "Controles"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ControlMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="VFlowContainer3" type="VFlowContainer" parent="ControlMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="ControlMenu/VBoxContainer/VBoxContainer/VFlowContainer3"]
+layout_mode = 2
+text = "A"
+
+[node name="Button2" type="Button" parent="ControlMenu/VBoxContainer/VBoxContainer/VFlowContainer3"]
+layout_mode = 2
+text = "D"
+
+[node name="Label" type="Label" parent="ControlMenu/VBoxContainer/VBoxContainer/VFlowContainer3"]
+layout_mode = 2
+text = "Andar/Wall Jump"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VFlowContainer" type="VFlowContainer" parent="ControlMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="ControlMenu/VBoxContainer/VBoxContainer/VFlowContainer"]
+layout_mode = 2
+text = "Space"
+
+[node name="Label" type="Label" parent="ControlMenu/VBoxContainer/VBoxContainer/VFlowContainer"]
+layout_mode = 2
+text = "Para pular"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="returnToPauseMenu" type="Button" parent="ControlMenu/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Retornar"
+
+[connection signal="pressed" from="PauseMenu/VBoxContainer/returnGame" to="." method="_on_return_game_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/go_to_control_menu" to="." method="_on_go_to_control_menu_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/returnMenu" to="." method="_on_return_menu_pressed"]
+[connection signal="pressed" from="ControlMenu/VBoxContainer/returnToPauseMenu" to="." method="_on_return_to_pause_menu_pressed"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvh0l24k64hif"]
+
+[ext_resource type="AudioStream" uid="uid://df7aqsulne87s" path="res://Assets/hdZLNZBZFlY_128.mp3" id="1_vp3cn"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_vp3cn")
+autoplay = true

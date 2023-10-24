@@ -1,0 +1,203 @@
+[gd_scene load_steps=11 format=3 uid="uid://b87s3wy2w88lp"]
+
+[ext_resource type="PackedScene" uid="uid://dae5x46fwnk6i" path="res://Scenes/world.tscn" id="1_tgidy"]
+[ext_resource type="PackedScene" uid="uid://dpido50bb0mau" path="res://Prefab/spikes.tscn" id="2_pfob1"]
+[ext_resource type="PackedScene" uid="uid://dvjvgbnk3h0f7" path="res://Levels/level_2.tscn" id="2_t12ox"]
+[ext_resource type="PackedScene" uid="uid://b15av6b5ijgrw" path="res://Prefab/heart.tscn" id="3_c73hp"]
+[ext_resource type="PackedScene" uid="uid://capc87j3dptp6" path="res://Prefab/level_tile_map.tscn" id="4_3dh4n"]
+[ext_resource type="StyleBox" uid="uid://vc782jslee28" path="res://Theme/white_9_slice.tres" id="6_d7jcf"]
+
+[sub_resource type="Animation" id="Animation_11igq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Walljump/Button:button_pressed")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Walljump/Button2:button_pressed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_q7khh"]
+resource_name = "tap"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Walljump/Button:button_pressed")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Walljump/Button2:button_pressed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_exop0"]
+_data = {
+"RESET": SubResource("Animation_11igq"),
+"tap": SubResource("Animation_q7khh")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcl3i"]
+size = Vector2(16, 32)
+
+[node name="Level_1" instance=ExtResource("1_tgidy")]
+next_level = ExtResource("2_t12ox")
+atual_level = "Level 1"
+
+[node name="Player" parent="." index="0"]
+position = Vector2(45, 133)
+level_atual = "Level 1"
+
+[node name="Spikes" parent="." index="3" instance=ExtResource("2_pfob1")]
+position = Vector2(153, 192)
+
+[node name="Spikes2" parent="." index="4" instance=ExtResource("2_pfob1")]
+position = Vector2(169, 192)
+
+[node name="Spikes3" parent="." index="5" instance=ExtResource("2_pfob1")]
+position = Vector2(280, 144)
+
+[node name="Spikes4" parent="." index="6" instance=ExtResource("2_pfob1")]
+position = Vector2(296, 144)
+
+[node name="Heart" parent="." index="7" instance=ExtResource("3_c73hp")]
+position = Vector2(225, 67)
+
+[node name="Heart6" parent="." index="8" instance=ExtResource("3_c73hp")]
+position = Vector2(225, 67)
+
+[node name="Heart2" parent="." index="9" instance=ExtResource("3_c73hp")]
+position = Vector2(44, 70)
+
+[node name="Heart3" parent="." index="10" instance=ExtResource("3_c73hp")]
+position = Vector2(291, 39)
+
+[node name="Heart4" parent="." index="11" instance=ExtResource("3_c73hp")]
+position = Vector2(256, -6)
+
+[node name="Heart5" parent="." index="12" instance=ExtResource("3_c73hp")]
+position = Vector2(161, 154)
+
+[node name="LevelTileMap2" parent="." index="13" instance=ExtResource("4_3dh4n")]
+layer_0/tile_data = PackedInt32Array(0, 1, 1, 65536, 1, 1, 131072, 1, 1, 196608, 1, 1, 262144, 1, 1, 327680, 1, 1, 393216, 1, 1, 458752, 1, 1, 524288, 1, 1, 589824, 1, 1, 655360, 1, 1, 720896, 1, 1, 786432, 1, 1, 1, 131073, 1, 65537, 131073, 1, 131073, 131073, 1, 196609, 131073, 1, 262145, 131073, 1, 327681, 131073, 1, 393217, 131073, 1, 458753, 131073, 1, 524289, 131073, 1, 589825, 327681, 2, 655361, 65537, 1, 720897, 65537, 1, 786433, 65537, 1, 786434, 65537, 1, 786435, 65537, 1, 786436, 65537, 1, 786437, 65537, 1, 786438, 65537, 1, 851974, 65537, 2, 851975, 65537, 2, 851976, 65537, 2, 851977, 65537, 2, 851973, 65537, 2, 851972, 65537, 2, 851971, 65537, 2, 851970, 65537, 2, 851969, 65537, 2, 851968, 1, 2, 851978, 65537, 2, 851979, 65537, 2, 851980, 65537, 2, 851981, 65537, 2, 851982, 65537, 2, 851983, 65537, 2, 851984, 65537, 2, 851985, 65537, 2, 851986, 65537, 2, 851987, 65537, 2, 851988, 131073, 2, 786452, 131073, 1, 720916, 131073, 1, 655380, 131073, 1, 589844, 131073, 1, 524308, 131073, 1, 458772, 131073, 1, 393236, 131073, 1, 327700, 131073, 1, 262164, 131073, 1, 196628, 131073, 1, 131092, 131073, 1, 65556, 131073, 1, 20, 131073, 1, 19, 1, 1, 65555, 1, 1, 131091, 1, 1, 196627, 1, 1, 262163, 1, 1, 327699, 1, 1, 393235, 1, 1, 458771, 1, 1, 524307, 1, 1, 655379, 65537, 1, 720915, 65537, 1, 786451, 65537, 1, 786450, 65537, 1, 786449, 65537, 1, 786448, 65537, 1, 786447, 65537, 1, 786446, 65537, 1, 786445, 65537, 1, 786444, 65537, 1, 786443, 393217, 2, 786442, 65537, 0, 786441, 65537, 0, 786440, 327681, 2, 786439, 65537, 1, 589826, 65537, 0, 589827, 131073, 0, 589831, 1, 0, 589832, 131073, 0, 655368, 131073, 1, 720904, 131073, 1, 720903, 65537, 1, 720902, 65537, 1, 720901, 65537, 1, 720900, 65537, 1, 720899, 65537, 1, 720898, 65537, 1, 655362, 65537, 1, 655363, 327681, 2, 655364, 65537, 0, 655365, 65537, 0, 655366, 65537, 0, 655367, 393217, 2, 655371, 1, 1, 655372, 65537, 1, 655373, 65537, 1, 655374, 65537, 1, 720914, 65537, 1, 720913, 65537, 1, 720912, 65537, 1, 720911, 65537, 1, 720910, 65537, 1, 720909, 65537, 1, 720908, 65537, 1, 720907, 1, 1, 589835, 1, 1, 589836, 65537, 1, 589837, 65537, 1, 589838, 65537, 1, 589839, 65537, 1, 589840, 327681, 2, 589841, 65537, 0, 589842, 65537, 0, 15, 1, 0, 16, 131073, 0, 65552, 131073, 1, 131088, 131073, 1, 196624, 131073, 1, 262160, 131073, 2, 262159, 1, 2, 196623, 1, 1, 131087, 1, 1, 65551, 1, 1, 524299, 1, 0, 524300, 65537, 0, 655375, 65537, 1, 655376, 65537, 1, 655377, 65537, 1, 655378, 65537, 1, 524301, 65537, 0, 524302, 65537, 0, 524303, 524289, 2, 458767, 196609, 0, 524304, 131073, 0, 589843, 393217, 2, 589830, 2, 0, 589828, 393219, 0, -65536, 1, 1, -131072, 1, 1, -196608, 1, 1, -262144, 1, 1, -65535, 131073, 1, -131071, 131073, 1, -196607, 131073, 1, -262143, 131073, 1, -327679, 327681, 1, -327680, 1, 1, -327678, 65537, 2, -327677, 65537, 2, -327676, 65537, 2, -327675, 65537, 2, -327674, 65537, 2, -393210, 65537, 0, -393209, 65537, 0, -393208, 65537, 0, -393207, 65537, 0, -393206, 65537, 0, -327670, 65537, 2, -327669, 65537, 2, -327668, 65537, 2, -327667, 65537, 2, -327666, 65537, 2, -327665, 65537, 2, -327664, 65537, 2, -327663, 65537, 2, -327662, 65537, 2, -327661, 393217, 1, -262125, 1, 1, -196589, 1, 1, -131053, 1, 1, -65517, 1, 1, -65516, 131073, 1, -131052, 131073, 1, -196588, 131073, 1, -393197, 65537, 0, -393196, 131073, 0, -327660, 131073, 1, -262124, 131073, 1, -393198, 65537, 0, -393199, 65537, 0, -393200, 65537, 0, -393201, 65537, 0, -393202, 65537, 0, -393203, 65537, 0, -393204, 65537, 0, -393205, 65537, 0, -327671, 65537, 2, -327672, 65537, 2, -327673, 65537, 2, -393211, 65537, 0, -393212, 65537, 0, -393213, 65537, 0, -393214, 65537, 0, -393215, 65537, 0, -393216, 1, 0)
+
+[node name="Walljump" type="VFlowContainer" parent="." index="15"]
+visible = false
+offset_left = 274.0
+offset_top = 85.0
+offset_right = 300.0
+offset_bottom = 103.0
+alignment = 1
+
+[node name="Button" type="Button" parent="Walljump" index="0"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/pressed = ExtResource("6_d7jcf")
+toggle_mode = true
+button_pressed = true
+text = "A"
+
+[node name="Button2" type="Button" parent="Walljump" index="1"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/pressed = ExtResource("6_d7jcf")
+toggle_mode = true
+button_pressed = true
+text = "D"
+
+[node name="Walljump_anim" type="AnimationPlayer" parent="." index="16"]
+autoplay = "tap"
+libraries = {
+"": SubResource("AnimationLibrary_exop0")
+}
+
+[node name="ActionExampleWallJump" type="Area2D" parent="." index="17"]
+position = Vector2(250, 98)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionExampleWallJump" index="0"]
+position = Vector2(-2, -2)
+shape = SubResource("RectangleShape2D_mcl3i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="18"]
+offset_left = 83.0
+offset_top = 49.0
+offset_right = 174.0
+offset_bottom = 128.0
+
+[node name="Label" type="Label" parent="VBoxContainer" index="0"]
+layout_mode = 2
+text = "Controles"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" index="1"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="VFlowContainer3" type="VFlowContainer" parent="VBoxContainer/VBoxContainer" index="0"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/VBoxContainer/VFlowContainer3" index="0"]
+layout_mode = 2
+text = "A"
+
+[node name="Button2" type="Button" parent="VBoxContainer/VBoxContainer/VFlowContainer3" index="1"]
+layout_mode = 2
+text = "D"
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VFlowContainer3" index="2"]
+layout_mode = 2
+text = "Andar/Wall Jump"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VFlowContainer" type="VFlowContainer" parent="VBoxContainer/VBoxContainer" index="1"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/VBoxContainer/VFlowContainer" index="0"]
+layout_mode = 2
+text = "Space"
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VFlowContainer" index="1"]
+layout_mode = 2
+text = "Para pular"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="body_entered" from="ActionExampleWallJump" to="." method="_on_action_example_wall_jump_body_entered"]

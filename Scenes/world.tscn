@@ -1,0 +1,132 @@
+[gd_scene load_steps=10 format=3 uid="uid://dae5x46fwnk6i"]
+
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_l2a8p"]
+[ext_resource type="PackedScene" uid="uid://ci5s46pxlnruv" path="res://Prefab/player.tscn" id="2_h7bjm"]
+[ext_resource type="PackedScene" uid="uid://dhjef8syynkel" path="res://Prefab/victory_screen.tscn" id="4_fu838"]
+[ext_resource type="PackedScene" uid="uid://bysfkwus3pnma" path="res://Prefab/pause_game.tscn" id="5_5ukel"]
+[ext_resource type="PackedScene" uid="uid://6goi72r6pylb" path="res://Prefab/level_completed.tscn" id="5_v1p5r"]
+[ext_resource type="PackedScene" uid="uid://capc87j3dptp6" path="res://Prefab/level_tile_map.tscn" id="6_lbiim"]
+
+[sub_resource type="Animation" id="Animation_emp3q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Startin/CenterContainer/StartinLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Start in : 3"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("CanvasLayer/Startin:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_n45oj"]
+resource_name = "countdown"
+length = 3.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Startin/CenterContainer/StartinLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 1.2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["Start in : 3", "Start in : 2", "Start in : 1"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Startin:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ltomj"]
+_data = {
+"RESET": SubResource("Animation_emp3q"),
+"countdown": SubResource("Animation_n45oj")
+}
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_l2a8p")
+
+[node name="Player" parent="." instance=ExtResource("2_h7bjm")]
+position = Vector2(45, 128)
+floor_constant_speed = true
+floor_snap_length = 2.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelCompleted" parent="CanvasLayer" instance=ExtResource("5_v1p5r")]
+visible = false
+color = Color(0, 0, 0, 0.415686)
+
+[node name="Startin" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1112.0
+offset_top = -964.0
+offset_right = 1259.0
+offset_bottom = 588.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.498039)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Startin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1112.0
+offset_top = 964.0
+offset_right = -1259.0
+offset_bottom = -588.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartinLabel" type="Label" parent="CanvasLayer/Startin/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start in : 3"
+
+[node name="VictoryScreen" parent="CanvasLayer" instance=ExtResource("4_fu838")]
+unique_name_in_owner = true
+visible = false
+
+[node name="PauseGame" parent="CanvasLayer" instance=ExtResource("5_5ukel")]
+visible = false
+
+[node name="LevelTileMap" parent="." instance=ExtResource("6_lbiim")]
+z_index = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+autoplay = "countdown"
+libraries = {
+"": SubResource("AnimationLibrary_ltomj")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

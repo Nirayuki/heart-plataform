@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxb38ed106xdd"]
+
+[ext_resource type="Script" path="res://Scripts/ButtonPrefab.gd" id="1_dxaln"]
+
+[node name="ButtonPrefab" type="Button"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 20)
+offset_right = 20.0
+offset_bottom = 20.0
+script = ExtResource("1_dxaln")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

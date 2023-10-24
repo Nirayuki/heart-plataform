@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhjef8syynkel"]
+
+[ext_resource type="Script" path="res://Scripts/victory_screen.gd" id="1_2oe7o"]
+
+[node name="VictoryScreen" type="ColorRect"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -998.0
+offset_top = -694.0
+offset_right = 1302.0
+offset_bottom = 580.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.803922)
+script = ExtResource("1_2oe7o")
+
+[node name="Container" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 998.0
+offset_top = 694.0
+offset_right = -1302.0
+offset_bottom = -580.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Obrigado por jogar!!"
+horizontal_alignment = 1
+
+[node name="MortesLabel" type="Label" parent="Container/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Mortes Totais"
+horizontal_alignment = 1
+
+[node name="ReturnMenuBtn" type="Button" parent="Container/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Retornar para o menu"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+offset_left = 1000.0
+offset_top = 862.0
+offset_right = 1104.0
+offset_bottom = 880.0
+text = "Desenvolvido por Nirayuki"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Container/VBoxContainer/ReturnMenuBtn" to="." method="_on_button_pressed"]

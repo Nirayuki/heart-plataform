@@ -1,0 +1,180 @@
+[gd_scene load_steps=16 format=3 uid="uid://ci5s46pxlnruv"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_u5kgm"]
+[ext_resource type="Resource" uid="uid://ce2xp7r0wih6n" path="res://Resources/DefaultMovementData.tres" id="2_gla2c"]
+[ext_resource type="Texture2D" uid="uid://r0rjd2podrsa" path="res://Assets/Player/player.png" id="2_jaxuy"]
+[ext_resource type="Texture2D" uid="uid://d4bmcpg7bfw2y" path="res://Assets/Others/heart.png" id="4_auobj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pldq3"]
+atlas = ExtResource("2_jaxuy")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qckq"]
+atlas = ExtResource("2_jaxuy")
+region = Rect2(144, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3tre"]
+atlas = ExtResource("2_jaxuy")
+region = Rect2(24, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k28t6"]
+atlas = ExtResource("2_jaxuy")
+region = Rect2(48, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mud5b"]
+atlas = ExtResource("2_jaxuy")
+region = Rect2(72, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2sl5"]
+atlas = ExtResource("2_jaxuy")
+region = Rect2(96, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ybhp"]
+atlas = ExtResource("2_jaxuy")
+region = Rect2(120, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2yee"]
+atlas = ExtResource("2_jaxuy")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sl274"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pldq3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qckq")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3tre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k28t6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mud5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2sl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ybhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2yee")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhq4q"]
+size = Vector2(8, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4s02g"]
+size = Vector2(6, 12)
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 2
+collision_mask = 6
+floor_snap_length = 5.0
+safe_margin = 0.01
+script = ExtResource("1_u5kgm")
+movement_data = ExtResource("2_gla2c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sl274")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_lhq4q")
+
+[node name="CoyoteJumpTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -32)
+limit_left = -10
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="HazardDetector" type="Area2D" parent="."]
+position = Vector2(0, 10)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardDetector"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_4s02g")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="VFlowContainer2" type="GridContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 9.0
+offset_top = 2.0
+offset_bottom = 15.0
+grow_horizontal = 2
+columns = 3
+
+[node name="Container_1" type="VFlowContainer" parent="CanvasLayer/VFlowContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VFlowContainer2/Container_1"]
+layout_mode = 2
+text = "Mortes:"
+vertical_alignment = 1
+
+[node name="DeathCount" type="Label" parent="CanvasLayer/VFlowContainer2/Container_1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+vertical_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer/VFlowContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Level 1"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Container_2" type="VFlowContainer" parent="CanvasLayer/VFlowContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Heartsize" type="Label" parent="CanvasLayer/VFlowContainer2/Container_2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VFlowContainer2/Container_2"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+texture = ExtResource("4_auobj")
+expand_mode = 2
+
+[connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]

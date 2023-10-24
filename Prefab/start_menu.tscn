@@ -1,0 +1,340 @@
+[gd_scene load_steps=23 format=3 uid="uid://na6382fhoim8"]
+
+[ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_whkbb"]
+[ext_resource type="PackedScene" uid="uid://cxb38ed106xdd" path="res://Prefab/ButtonLevel.tscn" id="2_bx7ui"]
+[ext_resource type="PackedScene" uid="uid://dpido50bb0mau" path="res://Prefab/spikes.tscn" id="3_184mx"]
+[ext_resource type="PackedScene" uid="uid://b87s3wy2w88lp" path="res://Levels/level_1.tscn" id="3_wxrhn"]
+[ext_resource type="PackedScene" uid="uid://dvjvgbnk3h0f7" path="res://Levels/level_2.tscn" id="4_o8bk4"]
+[ext_resource type="PackedScene" uid="uid://b15av6b5ijgrw" path="res://Prefab/heart.tscn" id="4_ryyvn"]
+[ext_resource type="PackedScene" uid="uid://capc87j3dptp6" path="res://Prefab/level_tile_map.tscn" id="5_f8k02"]
+[ext_resource type="Texture2D" uid="uid://r0rjd2podrsa" path="res://Assets/Player/player.png" id="5_hk2xn"]
+[ext_resource type="PackedScene" uid="uid://dy5453j06iml" path="res://Levels/level_3.tscn" id="5_w1qw6"]
+[ext_resource type="PackedScene" uid="uid://c1n54atujwmeb" path="res://Levels/level_4.tscn" id="6_kqx5a"]
+[ext_resource type="PackedScene" uid="uid://bqufyydt2f46a" path="res://Levels/level_5.tscn" id="7_c7foc"]
+[ext_resource type="PackedScene" uid="uid://btq2gihcmk4fs" path="res://Levels/level_6.tscn" id="8_qbmpe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_reats"]
+font_size = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pldq3"]
+atlas = ExtResource("5_hk2xn")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qckq"]
+atlas = ExtResource("5_hk2xn")
+region = Rect2(144, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3tre"]
+atlas = ExtResource("5_hk2xn")
+region = Rect2(24, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k28t6"]
+atlas = ExtResource("5_hk2xn")
+region = Rect2(48, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mud5b"]
+atlas = ExtResource("5_hk2xn")
+region = Rect2(72, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2sl5"]
+atlas = ExtResource("5_hk2xn")
+region = Rect2(96, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ybhp"]
+atlas = ExtResource("5_hk2xn")
+region = Rect2(120, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2yee"]
+atlas = ExtResource("5_hk2xn")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dggag"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pldq3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qckq")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3tre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k28t6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mud5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2sl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ybhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2yee")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[node name="Node" type="Node"]
+
+[node name="StartMenuContainer" type="ColorRect" parent="."]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.223529)
+script = ExtResource("1_whkbb")
+
+[node name="StartMenuNode" type="Control" parent="StartMenuContainer"]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartMenu" type="CenterContainer" parent="StartMenuContainer/StartMenuNode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenuContainer/StartMenuNode/StartMenu"]
+layout_mode = 2
+
+[node name="StartGameButton" type="Button" parent="StartMenuContainer/StartMenuNode/StartMenu/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+text = "Comecar jogo"
+
+[node name="LevelsButton" type="Button" parent="StartMenuContainer/StartMenuNode/StartMenu/VBoxContainer"]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+text = "Levels"
+
+[node name="ControlesButton" type="Button" parent="StartMenuContainer/StartMenuNode/StartMenu/VBoxContainer"]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+text = "Controles"
+
+[node name="QuitButton" type="Button" parent="StartMenuContainer/StartMenuNode/StartMenu/VBoxContainer"]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+text = "Sair
+"
+
+[node name="Label" type="Label" parent="StartMenuContainer/StartMenuNode"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 8.0
+offset_bottom = 28.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+text = "Heart Platform"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelsMenuNode" type="Control" parent="StartMenuContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="StartMenuContainer/LevelsMenuNode"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 6.0
+offset_bottom = 20.0
+grow_horizontal = 2
+text = "Levels"
+label_settings = SubResource("LabelSettings_reats")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="StartMenuContainer/LevelsMenuNode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="StartMenuContainer/LevelsMenuNode/CenterContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="01" parent="StartMenuContainer/LevelsMenuNode/CenterContainer/GridContainer" instance=ExtResource("2_bx7ui")]
+layout_mode = 2
+text_label = "01"
+level = ExtResource("3_wxrhn")
+
+[node name="02" parent="StartMenuContainer/LevelsMenuNode/CenterContainer/GridContainer" instance=ExtResource("2_bx7ui")]
+layout_mode = 2
+text_label = "02"
+level = ExtResource("4_o8bk4")
+
+[node name="03" parent="StartMenuContainer/LevelsMenuNode/CenterContainer/GridContainer" instance=ExtResource("2_bx7ui")]
+layout_mode = 2
+text_label = "03"
+level = ExtResource("5_w1qw6")
+
+[node name="04" parent="StartMenuContainer/LevelsMenuNode/CenterContainer/GridContainer" instance=ExtResource("2_bx7ui")]
+layout_mode = 2
+text_label = "04"
+level = ExtResource("6_kqx5a")
+
+[node name="05" parent="StartMenuContainer/LevelsMenuNode/CenterContainer/GridContainer" instance=ExtResource("2_bx7ui")]
+layout_mode = 2
+text_label = "05"
+level = ExtResource("7_c7foc")
+
+[node name="06" parent="StartMenuContainer/LevelsMenuNode/CenterContainer/GridContainer" instance=ExtResource("2_bx7ui")]
+layout_mode = 2
+text_label = "06"
+level = ExtResource("8_qbmpe")
+
+[node name="go_back" type="Button" parent="StartMenuContainer/LevelsMenuNode"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 0
+offset_left = 127.0
+offset_top = 111.0
+offset_right = 154.0
+offset_bottom = 123.0
+text = "Voltar"
+
+[node name="ControlMenuNode" type="CenterContainer" parent="StartMenuContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenuContainer/ControlMenuNode"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StartMenuContainer/ControlMenuNode/VBoxContainer"]
+layout_mode = 2
+text = "Controles"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenuContainer/ControlMenuNode/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="VFlowContainer3" type="VFlowContainer" parent="StartMenuContainer/ControlMenuNode/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="StartMenuContainer/ControlMenuNode/VBoxContainer/VBoxContainer/VFlowContainer3"]
+layout_mode = 2
+text = "A"
+
+[node name="Button2" type="Button" parent="StartMenuContainer/ControlMenuNode/VBoxContainer/VBoxContainer/VFlowContainer3"]
+layout_mode = 2
+text = "D"
+
+[node name="Label" type="Label" parent="StartMenuContainer/ControlMenuNode/VBoxContainer/VBoxContainer/VFlowContainer3"]
+layout_mode = 2
+text = "Andar/Wall Jump"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VFlowContainer" type="VFlowContainer" parent="StartMenuContainer/ControlMenuNode/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="StartMenuContainer/ControlMenuNode/VBoxContainer/VBoxContainer/VFlowContainer"]
+layout_mode = 2
+text = "Space"
+
+[node name="Label" type="Label" parent="StartMenuContainer/ControlMenuNode/VBoxContainer/VBoxContainer/VFlowContainer"]
+layout_mode = 2
+text = "Para pular"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="returnToPauseMenu" type="Button" parent="StartMenuContainer/ControlMenuNode/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Retornar"
+
+[node name="Cenario" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Spikes" parent="Cenario" instance=ExtResource("3_184mx")]
+position = Vector2(153, 192)
+
+[node name="Spikes2" parent="Cenario" instance=ExtResource("3_184mx")]
+position = Vector2(169, 192)
+
+[node name="Spikes3" parent="Cenario" instance=ExtResource("3_184mx")]
+position = Vector2(280, 144)
+
+[node name="Spikes4" parent="Cenario" instance=ExtResource("3_184mx")]
+position = Vector2(296, 144)
+
+[node name="Heart" parent="Cenario" instance=ExtResource("4_ryyvn")]
+position = Vector2(225, 67)
+
+[node name="Heart2" parent="Cenario" instance=ExtResource("4_ryyvn")]
+position = Vector2(44, 70)
+
+[node name="Heart3" parent="Cenario" instance=ExtResource("4_ryyvn")]
+position = Vector2(291, 39)
+
+[node name="Heart4" parent="Cenario" instance=ExtResource("4_ryyvn")]
+position = Vector2(256, -6)
+
+[node name="Heart5" parent="Cenario" instance=ExtResource("4_ryyvn")]
+position = Vector2(161, 154)
+
+[node name="LevelTileMap2" parent="Cenario" instance=ExtResource("5_f8k02")]
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 1, 131072, 1, 1, 196608, 1, 1, 262144, 1, 1, 327680, 1, 1, 393216, 1, 1, 458752, 1, 1, 524288, 1, 1, 589824, 1, 1, 655360, 1, 1, 720896, 1, 1, 786432, 1, 1, 1, 131073, 0, 65537, 131073, 1, 131073, 131073, 1, 196609, 131073, 1, 262145, 131073, 1, 327681, 131073, 1, 393217, 131073, 1, 458753, 131073, 1, 524289, 131073, 1, 589825, 327681, 2, 655361, 65537, 1, 720897, 65537, 1, 786433, 65537, 1, 786434, 65537, 1, 786435, 65537, 1, 786436, 65537, 1, 786437, 65537, 1, 786438, 65537, 1, 851974, 65537, 2, 851975, 65537, 2, 851976, 65537, 2, 851977, 65537, 2, 851973, 65537, 2, 851972, 65537, 2, 851971, 65537, 2, 851970, 65537, 2, 851969, 65537, 2, 851968, 1, 2, 851978, 65537, 2, 851979, 65537, 2, 851980, 65537, 2, 851981, 65537, 2, 851982, 65537, 2, 851983, 65537, 2, 851984, 65537, 2, 851985, 65537, 2, 851986, 65537, 2, 851987, 65537, 2, 851988, 131073, 2, 786452, 131073, 1, 720916, 131073, 1, 655380, 131073, 1, 589844, 131073, 1, 524308, 131073, 1, 458772, 131073, 1, 393236, 131073, 1, 327700, 131073, 1, 262164, 131073, 1, 196628, 131073, 1, 131092, 131073, 1, 65556, 131073, 1, 20, 131073, 0, 19, 1, 0, 65555, 1, 1, 131091, 1, 1, 196627, 1, 1, 262163, 1, 1, 327699, 1, 1, 393235, 1, 1, 458771, 1, 1, 524307, 1, 1, 655379, 65537, 1, 720915, 65537, 1, 786451, 65537, 1, 786450, 65537, 1, 786449, 65537, 1, 786448, 65537, 1, 786447, 65537, 1, 786446, 65537, 1, 786445, 65537, 1, 786444, 65537, 1, 786443, 393217, 2, 786442, 65537, 0, 786441, 65537, 0, 786440, 327681, 2, 786439, 65537, 1, 589826, 65537, 0, 589827, 131073, 0, 589831, 1, 0, 589832, 131073, 0, 655368, 131073, 1, 720904, 131073, 1, 720903, 65537, 1, 720902, 65537, 1, 720901, 65537, 1, 720900, 65537, 1, 720899, 65537, 1, 720898, 65537, 1, 655362, 65537, 1, 655363, 327681, 2, 655364, 65537, 0, 655365, 65537, 0, 655366, 65537, 0, 655367, 393217, 2, 655371, 1, 1, 655372, 65537, 1, 655373, 65537, 1, 655374, 65537, 1, 720914, 65537, 1, 720913, 65537, 1, 720912, 65537, 1, 720911, 65537, 1, 720910, 65537, 1, 720909, 65537, 1, 720908, 65537, 1, 720907, 1, 1, 589835, 1, 1, 589836, 65537, 1, 589837, 65537, 1, 589838, 65537, 1, 589839, 65537, 1, 589840, 327681, 2, 589841, 65537, 0, 589842, 65537, 0, 15, 1, 0, 16, 131073, 0, 65552, 131073, 1, 131088, 131073, 1, 196624, 131073, 1, 262160, 131073, 2, 262159, 1, 2, 196623, 1, 1, 131087, 1, 1, 65551, 1, 1, 524299, 1, 0, 524300, 65537, 0, 655375, 65537, 1, 655376, 65537, 1, 655377, 65537, 1, 655378, 65537, 1, 524301, 65537, 0, 524302, 65537, 0, 524303, 524289, 2, 458767, 196609, 0, 524304, 131073, 0, 589843, 393217, 2, 589830, 2, 0, 589828, 393219, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cenario"]
+position = Vector2(45, 133)
+sprite_frames = SubResource("SpriteFrames_dggag")
+animation = &"idle"
+autoplay = "idle"
+
+[connection signal="pressed" from="StartMenuContainer/StartMenuNode/StartMenu/VBoxContainer/StartGameButton" to="StartMenuContainer" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="StartMenuContainer/StartMenuNode/StartMenu/VBoxContainer/LevelsButton" to="StartMenuContainer" method="_on_levels_button_pressed"]
+[connection signal="pressed" from="StartMenuContainer/StartMenuNode/StartMenu/VBoxContainer/ControlesButton" to="StartMenuContainer" method="_on_controles_button_pressed"]
+[connection signal="pressed" from="StartMenuContainer/StartMenuNode/StartMenu/VBoxContainer/QuitButton" to="StartMenuContainer" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="StartMenuContainer/LevelsMenuNode/go_back" to="StartMenuContainer" method="_on_go_back_pressed"]
+[connection signal="pressed" from="StartMenuContainer/ControlMenuNode/VBoxContainer/returnToPauseMenu" to="StartMenuContainer" method="_on_return_to_pause_menu_pressed"]

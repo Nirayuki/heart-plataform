@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://6goi72r6pylb"]
+
+[node name="LevelCompleted" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1967.0
+offset_top = -1058.0
+offset_right = 3025.0
+offset_bottom = 1322.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.521569)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1967.0
+offset_top = 1058.0
+offset_right = -3024.0
+offset_bottom = -1322.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "Level Completado!"
